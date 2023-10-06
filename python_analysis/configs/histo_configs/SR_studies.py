@@ -6,57 +6,7 @@ import awkward as ak
 
 def make_histograms():
     histograms = {
-        # Selected electron 1 histos, 1D
-        #"sel_e1_pt" : Hist(samp,cut,ele_pt,storage=hist.storage.Weight()),
-        #"sel_e1_trkIso" : Hist(samp,cut,ele_trkIso,storage=hist.storage.Weight()),
-        #"sel_e1_trkRelIso" : Hist(samp,cut,ele_trkRelIso,storage=hist.storage.Weight()),
-        #"sel_e1_PFRelIso" : Hist(samp,cut,ele_PFRelIso,storage=hist.storage.Weight()),
-        #"sel_e1_PFRelIso3" : Hist(samp,cut,ele_PFRelIso,storage=hist.storage.Weight()),
-        #"sel_e1_PFRelIso4" : Hist(samp,cut,ele_PFRelIso,storage=hist.storage.Weight()),
-        #"sel_e1_PFRelIso8" : Hist(samp,cut,ele_PFRelIso,storage=hist.storage.Weight()),
-        #"sel_e1_PFIso3" : Hist(samp,cut,ele_PFIso,storage=hist.storage.Weight()),
-        #"sel_e1_PFIso4" : Hist(samp,cut,ele_PFIso,storage=hist.storage.Weight()),
-        #"sel_e1_PFIso8" : Hist(samp,cut,ele_PFIso,storage=hist.storage.Weight()),
-        #"sel_e1_trkChi2" : Hist(samp,cut,ele_chi2,storage=hist.storage.Weight()),
-        #"sel_e1_trkProb" : Hist(samp,cut,ele_prob,storage=hist.storage.Weight()),
-        #"sel_e1_dxy" : Hist(samp,cut,ele_dxy,storage=hist.storage.Weight()),
-        #"sel_e1_dxySignif" : Hist(samp,cut,ele_dxySignif,storage=hist.storage.Weight()),
-        #"sel_e1_angRes" : Hist(samp,cut,ele_angRes,storage=hist.storage.Weight()),
-        #"sel_e1_mindRj" : Hist(samp,cut,dR,storage=hist.storage.Weight()),
-        #"sel_e1_mindPhiJ" : Hist(samp,cut,dphi_generic,storage=hist.storage.Weight()),
-        # Selected electron 2 histos, 1D
-        #"sel_e2_pt" : Hist(samp,cut,ele_pt,storage=hist.storage.Weight()),
-        #"sel_e2_trkIso" : Hist(samp,cut,ele_trkIso,storage=hist.storage.Weight()),
-        #"sel_e2_trkRelIso" : Hist(samp,cut,ele_trkRelIso,storage=hist.storage.Weight()),
-        #"sel_e2_PFRelIso" : Hist(samp,cut,ele_PFRelIso,storage=hist.storage.Weight()),
-        #"sel_e2_PFRelIso3" : Hist(samp,cut,ele_PFRelIso,storage=hist.storage.Weight()),
-        #"sel_e2_PFRelIso4" : Hist(samp,cut,ele_PFRelIso,storage=hist.storage.Weight()),
-        #"sel_e2_PFRelIso8" : Hist(samp,cut,ele_PFRelIso,storage=hist.storage.Weight()),
-        #"sel_e2_PFIso3" : Hist(samp,cut,ele_PFIso,storage=hist.storage.Weight()),
-        #"sel_e2_PFIso4" : Hist(samp,cut,ele_PFIso,storage=hist.storage.Weight()),
-        #"sel_e2_PFIso8" : Hist(samp,cut,ele_PFIso,storage=hist.storage.Weight()),
-        #"sel_e2_trkChi2" : Hist(samp,cut,ele_chi2,storage=hist.storage.Weight()),
-        #"sel_e2_trkProb" : Hist(samp,cut,ele_prob,storage=hist.storage.Weight()),
-        #"sel_e2_dxy" : Hist(samp,cut,ele_dxy,storage=hist.storage.Weight()),
-        #"sel_e2_dxySignif" : Hist(samp,cut,ele_dxySignif,storage=hist.storage.Weight()),
-        #"sel_e2_angRes" : Hist(samp,cut,ele_angRes,storage=hist.storage.Weight()),
-        #"sel_e2_mindRj" : Hist(samp,cut,dR,storage=hist.storage.Weight()),
-        #"sel_e2_mindPhiJ" : Hist(samp,cut,dphi_generic,storage=hist.storage.Weight()),
-        # Selected electron 1 histos, 2D
-        #"sel_e1_pt_vs_trkIso" : Hist(samp,cut,ele_pt,ele_trkIso,storage=hist.storage.Weight()),
-        #"sel_e1_pt_vs_trkRelIso" : Hist(samp,cut,ele_pt,ele_trkRelIso,storage=hist.storage.Weight()),
-        #"sel_e1_pt_vs_chi2" : Hist(samp,cut,ele_pt,ele_chi2,storage=hist.storage.Weight()),
-        #"sel_e1_chi2_vs_dxy" : Hist(samp,cut,ele_chi2,ele_dxy,storage=hist.storage.Weight()),
-        #"sel_e1_numHits_vs_trkChi2" : Hist(samp,cut,ele_trkHits,ele_chi2,storage=hist.storage.Weight()),
-        #"sel_e1_numHits_vs_trkProb" : Hist(samp,cut,ele_trkHits,ele_prob,storage=hist.storage.Weight()),
-        # Selected electron 2 histos, 2D
-        #"sel_e2_pt_vs_trkIso" : Hist(samp,cut,ele_pt,ele_trkIso,storage=hist.storage.Weight()),
-        #"sel_e2_pt_vs_trkRelIso" : Hist(samp,cut,ele_pt,ele_trkRelIso,storage=hist.storage.Weight()),
-        #"sel_e2_pt_vs_chi2" : Hist(samp,cut,ele_pt,ele_chi2,storage=hist.storage.Weight()),
-        #"sel_e2_chi2_vs_dxy" : Hist(samp,cut,ele_chi2,ele_dxy,storage=hist.storage.Weight()),
-        #"sel_e2_numHits_vs_trkChi2" : Hist(samp,cut,ele_trkHits,ele_chi2,storage=hist.storage.Weight()),
-        #"sel_e2_numHits_vs_trkProb" : Hist(samp,cut,ele_trkHits,ele_prob,storage=hist.storage.Weight()),
-        # 1D selected vertex histos
+        # quantities associated w/ selected vertex
         "sel_vtx_type" : Hist(samp,cut,vtx_type,storage=hist.storage.Weight()),
         "sel_vtx_sign" : Hist(samp,cut,vtx_sign,storage=hist.storage.Weight()),
         "sel_vtx_dR" : Hist(samp,cut,dR,storage=hist.storage.Weight()),
@@ -76,18 +26,6 @@ def make_histograms():
         "sel_vtx_pt" : Hist(samp,cut,ele_pt,storage=hist.storage.Weight()),
         "sel_vtx_eta" : Hist(samp,cut,ele_eta,storage=hist.storage.Weight()),
         "sel_vtx_phi" : Hist(samp,cut,ele_phi,storage=hist.storage.Weight()),
-        #"sel_vtx_PFRelIso3" : Hist(samp,cut,ele_PFRelIso,storage=hist.storage.Weight()),
-        #"sel_vtx_PFRelIso3M" : Hist(samp,cut,ele_PFRelIsoM,storage=hist.storage.Weight()),
-        #"sel_vtx_PFRelIso4" : Hist(samp,cut,ele_PFRelIso,storage=hist.storage.Weight()),
-        #"sel_vtx_PFRelIso4M" : Hist(samp,cut,ele_PFRelIsoM,storage=hist.storage.Weight()),
-        #"sel_vtx_PFRelIso8" : Hist(samp,cut,ele_PFRelIso,storage=hist.storage.Weight()),
-        #"sel_vtx_PFRelIso8M" : Hist(samp,cut,ele_PFRelIsoM,storage=hist.storage.Weight()),
-        #"sel_vtx_PFIso3" : Hist(samp,cut,ele_PFIso,storage=hist.storage.Weight()),
-        #"sel_vtx_PFIso3M" : Hist(samp,cut,ele_PFIsoM,storage=hist.storage.Weight()),
-        #"sel_vtx_PFIso4" : Hist(samp,cut,ele_PFIso,storage=hist.storage.Weight()),
-        #"sel_vtx_PFIso4M" : Hist(samp,cut,ele_PFIsoM,storage=hist.storage.Weight()),
-        #"sel_vtx_PFIso8" : Hist(samp,cut,ele_PFIso,storage=hist.storage.Weight()),
-        #"sel_vtx_PFIso8M" : Hist(samp,cut,ele_PFIsoM,storage=hist.storage.Weight()),
         "sel_vtx_matchType" : Hist(samp,cut,vtx_matchType,storage=hist.storage.Weight()),
         "sel_vtx_max_chi2" : Hist(samp,cut,ele_chi2,storage=hist.storage.Weight()),
         "sel_vtx_min_pt" : Hist(samp,cut,ele_pt,storage=hist.storage.Weight()),
@@ -101,6 +39,9 @@ def make_histograms():
         "sel_vtx_mindPhiJ" : Hist(samp,cut,dphi_generic,storage=hist.storage.Weight()),
         "sel_vtx_mindRj_vs_matchType" : Hist(samp,cut,dR,vtx_matchType,storage=hist.storage.Weight()),
         "sel_vtx_mindPhiJ_vs_matchType" : Hist(samp,cut,dphi_generic,vtx_matchType,storage=hist.storage.Weight()),
+
+        # other quantities
+        "num_electrons" : Hist(samp,cut,hist.axis.Integer(0,10,name="num_ele"),storage=hist.storage.Weight()),
 
         # 2D selected vertex histos
         "sel_vtx_mass_vs_mindxy" : Hist(samp,cut,mass,ele_dxy,storage=hist.storage.Weight()),
@@ -140,8 +81,9 @@ def make_histograms():
         "minBtag" : Hist(samp,cut,btag,storage=hist.storage.Weight()),
         "lead_jet_abseta" : Hist(samp,cut,jet_abseta,storage=hist.storage.Weight()),
         "lead_jet_pt" : Hist(samp,cut,jet_pt,storage=hist.storage.Weight()),
-        #"dp_dotJet1" : Hist(samp,cut,angleDot,storage=hist.storage.Weight()),
-        #"dp_dotJet12" : Hist(samp,cut,angleDot,storage=hist.storage.Weight()),
+        "dp_dotJet1" : Hist(samp,cut,angleDot,storage=hist.storage.Weight()),
+        "dp_dotJet12" : Hist(samp,cut,angleDot,storage=hist.storage.Weight()),
+        
         # Gen plots
         "genEle_mindRj" : Hist(samp,cut,dR,storage=hist.storage.Weight()),
         "genEle_mindPhiJ" : Hist(samp,cut,dphi_generic,storage=hist.storage.Weight()),
@@ -154,7 +96,9 @@ def make_histograms():
         "genEE_mindRj" : Hist(samp,cut,dR,storage=hist.storage.Weight()),
         "genEE_mindPhiJ" : Hist(samp,cut,dphi_generic,storage=hist.storage.Weight()),
         "genEE_mindRjGen" : Hist(samp,cut,dR,storage=hist.storage.Weight()),
-        "genEE_mindPhiJGen" : Hist(samp,cut,dphi_generic,storage=hist.storage.Weight())
+        "genEE_mindPhiJGen" : Hist(samp,cut,dphi_generic,storage=hist.storage.Weight()),
+        "genEE_dR" : Hist(samp,cut,dR,storage=hist.storage.Weight()),
+        "genMatch_vs_vtxMatch" : Hist(samp,cut,hist.axis.Integer(0,3,name='gen'),hist.axis.IntCategory([0,1,2],name='sel'),storage=hist.storage.Weight())
     }
     return histograms
 
@@ -168,51 +112,6 @@ def fillHistos(events,histos,samp,cut,info,sum_wgt=1):
     wgt = events.eventWgt/sum_wgt
     vtx = events.sel_vtx
     # 1D selected electron 1 histos
-    """histos["sel_e1_pt"].fill(samp=samp,cut=cut,pt=e1.pt,weight=wgt)
-    histos["sel_e1_trkIso"].fill(samp=samp,cut=cut,trkIso=e1.trkIso,weight=wgt)
-    histos["sel_e1_trkRelIso"].fill(samp=samp,cut=cut,relIso=e1.trkRelIso,weight=wgt)
-    histos["sel_e1_PFRelIso3"].fill(samp=samp,cut=cut,relIso=e1.PFRelIso3,weight=wgt)
-    histos["sel_e1_PFRelIso4"].fill(samp=samp,cut=cut,relIso=e1.PFRelIso4,weight=wgt)
-    histos["sel_e1_PFRelIso8"].fill(samp=samp,cut=cut,relIso=e1.PFRelIso8,weight=wgt)
-    histos["sel_e1_PFRelIso"].fill(samp=samp,cut=cut,relIso=e1.PFRelIso,weight=wgt)
-    histos["sel_e1_PFIso3"].fill(samp=samp,cut=cut,iso=e1.PFIso3,weight=wgt)
-    histos["sel_e1_PFIso4"].fill(samp=samp,cut=cut,iso=e1.PFIso4,weight=wgt)
-    histos["sel_e1_PFIso8"].fill(samp=samp,cut=cut,iso=e1.PFIso8,weight=wgt)
-    histos["sel_e1_trkChi2"].fill(samp=samp,cut=cut,chi2=e1.trkChi2,weight=wgt)
-    histos["sel_e1_trkProb"].fill(samp=samp,cut=cut,prob=e1.trkProb,weight=wgt)
-    histos["sel_e1_dxy"].fill(samp=samp,cut=cut,dxy=np.abs(e1.dxy),weight=wgt)
-    histos["sel_e1_dxySignif"].fill(samp=samp,cut=cut,dxy_signif=np.abs(e1.dxy)/e1.dxyErr,weight=wgt)
-    histos["sel_e1_angRes"].fill(samp=samp,cut=cut,angRes=e1.angRes,weight=wgt)
-    histos["sel_e1_mindRj"].fill(samp=samp,cut=cut,dr=e1.mindRj,weight=wgt)
-    histos["sel_e1_mindPhiJ"].fill(samp=samp,cut=cut,dphi=e1.mindPhiJ,weight=wgt)
-    # 1D selected electron 2 histos
-    histos["sel_e2_pt"].fill(samp=samp,cut=cut,pt=e2.pt,weight=wgt)
-    histos["sel_e2_trkIso"].fill(samp=samp,cut=cut,trkIso=e2.trkIso,weight=wgt)
-    histos["sel_e2_trkRelIso"].fill(samp=samp,cut=cut,relIso=e2.trkRelIso,weight=wgt)
-    histos["sel_e2_PFRelIso3"].fill(samp=samp,cut=cut,relIso=e2.PFRelIso3,weight=wgt)
-    histos["sel_e2_PFRelIso4"].fill(samp=samp,cut=cut,relIso=e2.PFRelIso4,weight=wgt)
-    histos["sel_e2_PFRelIso8"].fill(samp=samp,cut=cut,relIso=e2.PFRelIso8,weight=wgt)
-    histos["sel_e2_PFRelIso"].fill(samp=samp,cut=cut,relIso=e2.PFRelIso,weight=wgt)
-    histos["sel_e2_PFIso3"].fill(samp=samp,cut=cut,iso=e2.PFIso3,weight=wgt)
-    histos["sel_e2_PFIso4"].fill(samp=samp,cut=cut,iso=e2.PFIso4,weight=wgt)
-    histos["sel_e2_PFIso8"].fill(samp=samp,cut=cut,iso=e2.PFIso8,weight=wgt)
-    histos["sel_e2_trkChi2"].fill(samp=samp,cut=cut,chi2=e2.trkChi2,weight=wgt)
-    histos["sel_e2_trkProb"].fill(samp=samp,cut=cut,prob=e2.trkProb,weight=wgt)
-    histos["sel_e2_dxy"].fill(samp=samp,cut=cut,dxy=np.abs(e2.dxy),weight=wgt)
-    histos["sel_e2_dxySignif"].fill(samp=samp,cut=cut,dxy_signif=np.abs(e2.dxy)/e2.dxyErr,weight=wgt)
-    histos["sel_e2_angRes"].fill(samp=samp,cut=cut,angRes=e2.angRes,weight=wgt)
-    histos["sel_e2_mindRj"].fill(samp=samp,cut=cut,dr=e2.mindRj,weight=wgt)
-    histos["sel_e2_mindPhiJ"].fill(samp=samp,cut=cut,dphi=e2.mindPhiJ,weight=wgt)
-    # 2D selected electron 1 histos
-    histos["sel_e1_pt_vs_trkIso"].fill(samp=samp,cut=cut,pt=e1.pt,trkIso=e1.trkIso,weight=wgt)
-    histos["sel_e1_pt_vs_trkRelIso"].fill(samp=samp,cut=cut,pt=e1.pt,relIso=e1.trkRelIso,weight=wgt)
-    histos["sel_e1_pt_vs_chi2"].fill(samp=samp,cut=cut,pt=e1.pt,chi2=e1.trkChi2,weight=wgt)
-    histos["sel_e1_chi2_vs_dxy"].fill(samp=samp,cut=cut,chi2=e1.trkChi2,dxy=np.abs(e1.dxy),weight=wgt)
-    # 2D selected electron 2 histos
-    histos["sel_e2_pt_vs_trkIso"].fill(samp=samp,cut=cut,pt=e2.pt,trkIso=e2.trkIso,weight=wgt)
-    histos["sel_e2_pt_vs_trkRelIso"].fill(samp=samp,cut=cut,pt=e2.pt,relIso=e2.trkRelIso,weight=wgt)
-    histos["sel_e2_pt_vs_chi2"].fill(samp=samp,cut=cut,pt=e2.pt,chi2=e2.trkChi2,weight=wgt)
-    histos["sel_e2_chi2_vs_dxy"].fill(samp=samp,cut=cut,chi2=e2.trkChi2,dxy=np.abs(e2.dxy),weight=wgt)"""
     # 1D selected vertex histos
     histos["sel_vtx_type"].fill(samp=samp,cut=cut,type=vtx.typ,weight=wgt)
     histos["sel_vtx_sign"].fill(samp=samp,cut=cut,sign=vtx.sign,weight=wgt)
@@ -233,18 +132,6 @@ def fillHistos(events,histos,samp,cut,info,sum_wgt=1):
     histos["sel_vtx_pt"].fill(samp=samp,cut=cut,pt=vtx.pt,weight=wgt)
     histos["sel_vtx_eta"].fill(samp=samp,cut=cut,eta=vtx.eta,weight=wgt)
     histos["sel_vtx_phi"].fill(samp=samp,cut=cut,phi=vtx.phi,weight=wgt)
-    #histos["sel_vtx_PFRelIso3"].fill(samp=samp,cut=cut,relIso=vtx.PFRelIso3,weight=wgt)
-    #histos["sel_vtx_PFRelIso3M"].fill(samp=samp,cut=cut,isoM=vtx.PFRelIso3*vtx.m,weight=wgt)
-    #histos["sel_vtx_PFRelIso4"].fill(samp=samp,cut=cut,relIso=vtx.PFRelIso4,weight=wgt)
-    #histos["sel_vtx_PFRelIso4M"].fill(samp=samp,cut=cut,isoM=vtx.PFRelIso4*vtx.m,weight=wgt)
-    #histos["sel_vtx_PFRelIso8"].fill(samp=samp,cut=cut,relIso=vtx.PFRelIso8,weight=wgt)
-    #histos["sel_vtx_PFRelIso8M"].fill(samp=samp,cut=cut,isoM=vtx.PFRelIso8*vtx.m,weight=wgt)
-    #histos["sel_vtx_PFIso3"].fill(samp=samp,cut=cut,iso=vtx.PFIso3,weight=wgt)
-    #histos["sel_vtx_PFIso3M"].fill(samp=samp,cut=cut,isoM=vtx.PFIso3*vtx.m,weight=wgt)
-    #histos["sel_vtx_PFIso4"].fill(samp=samp,cut=cut,iso=vtx.PFIso4,weight=wgt)
-    #histos["sel_vtx_PFIso4M"].fill(samp=samp,cut=cut,isoM=vtx.PFIso4*vtx.m,weight=wgt)
-    #histos["sel_vtx_PFIso8"].fill(samp=samp,cut=cut,iso=vtx.PFIso8,weight=wgt)
-    #histos["sel_vtx_PFIso8M"].fill(samp=samp,cut=cut,isoM=vtx.PFIso8*vtx.m,weight=wgt)
     histos["sel_vtx_max_chi2"].fill(samp=samp,cut=cut,chi2=ak.where(e1.trkChi2>e2.trkChi2,e1.trkChi2,e2.trkChi2),weight=wgt)
     histos["sel_vtx_min_pt"].fill(samp=samp,cut=cut,pt=ak.where(e1.pt<e2.pt,e1.pt,e2.pt),weight=wgt)
     histos["sel_vtx_maxPFIso"].fill(samp=samp,cut=cut,relIso=max_pfiso,weight=wgt)
@@ -252,6 +139,10 @@ def fillHistos(events,histos,samp,cut,info,sum_wgt=1):
     histos["sel_vtx_minEledPhiJ"].fill(samp=samp,cut=cut,dphi=np.minimum(e1.mindPhiJ,e2.mindPhiJ),weight=wgt)
     histos["sel_vtx_mindRj"].fill(samp=samp,cut=cut,dr=events.sel_vtx.mindRj,weight=wgt)
     histos["sel_vtx_mindPhiJ"].fill(samp=samp,cut=cut,dphi=events.sel_vtx.mindPhiJ,weight=wgt)
+
+    # other plots
+    histos['num_electrons'].fill(samp=samp,cut=cut,num_ele=ak.count(events.Electron.pt,axis=1)+ak.count(events.LptElectron.pt,axis=1),weight=wgt)
+    
     # 2D selected vertex plots
     histos["sel_vtx_mass_vs_mindxy"].fill(samp=samp,cut=cut,mass=vtx.m,dxy=min_dxy,weight=wgt)
     histos["sel_vtx_mass_vs_vxy"].fill(samp=samp,cut=cut,mass=vtx.m,vxy=vtx.vxy,weight=wgt)
@@ -290,8 +181,8 @@ def fillHistos(events,histos,samp,cut,info,sum_wgt=1):
     histos["minBtag"].fill(samp=samp,cut=cut,btag=ak.fill_none(ak.min(events.PFJet.bTag,axis=1),-1),weight=wgt)
     histos["lead_jet_abseta"].fill(samp=samp,cut=cut,eta=np.abs(ak.fill_none(ak.pad_none(events.PFJet.eta,1),-999))[:,0],weight=wgt)
     histos["lead_jet_pt"].fill(samp=samp,cut=cut,pt=ak.fill_none(ak.pad_none(events.PFJet.pt,1),-999)[:,0],weight=wgt)
-    #histos["dp_dotJet1"].fill(samp=samp,cut=cut,dot=events.DP_dotJet1,weight=wgt)
-    #histos["dp_dotJet12"].fill(samp=samp,cut=cut,dot=events.DP_dotJet12,weight=wgt)
+    histos["dp_dotJet1"].fill(samp=samp,cut=cut,dot=events.DP_dotJet1,weight=wgt)
+    histos["dp_dotJet12"].fill(samp=samp,cut=cut,dot=events.DP_dotJet12,weight=wgt)
 
     if info["type"] == "signal":
         histos["sel_vtx_matchType"].fill(samp=samp,cut=cut,mtype=vtx.match,weight=wgt)
@@ -315,3 +206,5 @@ def fillHistos(events,histos,samp,cut,info,sum_wgt=1):
         histos["genEE_mindPhiJ"].fill(samp=samp,cut=cut,dphi=events.genEE.mindPhiJ,weight=wgt)
         histos["genEE_mindRjGen"].fill(samp=samp,cut=cut,dr=events.genEE.mindRjGen,weight=wgt)
         histos["genEE_mindPhiJGen"].fill(samp=samp,cut=cut,dphi=events.genEE.mindPhiJGen,weight=wgt)
+        histos['genEE_dR'].fill(samp=samp,cut=cut,dr=events.genEE.dr,weight=wgt)
+        histos['genMatch_vs_vtxMatch'].fill(samp=samp,cut=cut,gen=events.signalReco,sel=events.sel_vtx.match)
