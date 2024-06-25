@@ -37,7 +37,7 @@ vxy_range = {1:[0,20],10:[0,50],100:[0,50],1000:[0,50]}
 vxy_rebin = {1:5,10:20,100:20,1000:20}
 
 class Analyzer:
-    def __init__(self,fileList,histoList,cuts,max_samples=-1,max_files_per_samp=-1,newCoffea=False):
+    def __init__(self,fileList,histoList,cuts,model_json=None,max_samples=-1,max_files_per_samp=-1,newCoffea=False):
         # flag to see if we're using new coffea
         self.newCoffea = newCoffea
 
@@ -67,6 +67,8 @@ class Analyzer:
         self.nEventsProcessed = {}
         self.totalEvents = 0
         self.mode = None
+
+        self.model = model_json # BDT model for inference (if used in selections)
         
         self.loadFiles()
     
@@ -135,7 +137,7 @@ class Analyzer:
     def process(self,treename='ntuples/outT',execr="iterative",workers=4,dask_client=None,procType='default',**kwargs):
         fileset = self.sample_locs
         if procType == 'default':
-            proc = iDMeProcessor(self.sample_names,self.sample_info,self.sample_locs,self.histoFile,self.cuts,mode=self.mode,**kwargs)
+            proc = iDMeProcessor(self.sample_names,self.sample_info,self.sample_locs,self.histoFile,self.cuts,mode=self.mode,model_json=self.model, **kwargs)
         elif procType == 'gen':
             proc = genProcessor(self.sample_names,self.sample_info,self.sample_locs,self.histoFile,self.cuts,mode=self.mode,**kwargs)
         elif procType == 'trig':
@@ -169,11 +171,12 @@ class Analyzer:
         return accumulator
 
 class iDMeProcessor(processor.ProcessorABC):
-    def __init__(self,samples,sampleInfo,fileSet,histoFile,cutFile,mode='signal',**kwargs):
+    def __init__(self,samples,sampleInfo,fileSet,histoFile,cutFile,mode='signal',model_json=None,**kwargs):
         self.samples = samples
         self.sampleInfo = sampleInfo
         self.sampleLocs = fileSet
         self.mode = mode
+        self.model = model_json
         
         # load in histogram config
         self.histoMod = importlib.import_module(histoFile)
@@ -283,6 +286,8 @@ class iDMeProcessor(processor.ProcessorABC):
         # define "selected" vertex based on selection criteria in the routine (nominally: lowest chi2)
         routines.selectBestVertex(events)
         #events = routines.selectTrueVertex(events,events.good_vtx)
+
+        routines.prepareBDT(events, self.model) # prepare BDT inference if the cuts include BDT-based cut
 
         # Fill cutflow after baseline selection
         if isMC:
@@ -394,7 +399,7 @@ class genProcessor(iDMeProcessor):
             routines.genMatchRecoQuantities(events)
         # associate electrons to vertices after all electron-related stuff has been computed
         routines.vtxElectronConnection(events) # associate electrons to vertices
-        routines.defineGoodVertices(events) # define "good" vertices based on whether associated electrons pass ID cuts
+        routines.defineGoodVertices(events,version='v5') # define "good" vertices based on whether associated electrons pass ID cuts
         if info['type'] == 'signal':
             routines.genMatchExtraVtxVariables(events)
 

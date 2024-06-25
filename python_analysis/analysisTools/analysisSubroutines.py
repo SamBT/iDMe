@@ -179,9 +179,11 @@ def defineGoodVertices(events,version='default',ele_id='dR'):
     mass = events.vtx.m < 20
     eleDphi = events.vtx.eleDphi < 2
     mindxy = events.vtx.min_dxy > 0.01
+    mindxyLoose = events.vtx.min_dxy > 0.005
     maxMiniIso = np.maximum(events.vtx.e1.miniRelIsoEleCorr,events.vtx.e2.miniRelIsoEleCorr) < 0.9
     passConvVeto = events.vtx.e1.conversionVeto & events.vtx.e2.conversionVeto
     mass_lo = events.vtx.m > 0.325
+    
     if version == 'none':
         events['vtx','isGood'] = ak.values_astype(ak.ones_like(events.vtx.m),bool)
     if version == 'default':
@@ -197,7 +199,9 @@ def defineGoodVertices(events,version='default',ele_id='dR'):
     if version == 'v5':
         events['vtx','isGood'] = IDcut & ossf & chi2 & mass & mindxy & maxMiniIso & passConvVeto # v5 definition
     if version == 'v6':
-        events['vtx','isGood'] = IDcut & ossf & chi2 & mass & mindxy & maxMiniIso & passConvVeto & mass_lo # v5 definition
+        events['vtx','isGood'] = IDcut & ossf & chi2 & mass & mindxy & maxMiniIso & passConvVeto & mass_lo # v6 definition
+    if version == 'v7':
+        events['vtx','isGood'] = IDcut & ossf & chi2 & mindxyLoose & maxMiniIso & passConvVeto # v7 definition
     events.__setitem__("good_vtx",events.vtx[events.vtx.isGood])
     events.__setitem__("nGoodVtx",ak.count(events.good_vtx.vxy,axis=1))
 
@@ -450,7 +454,7 @@ def sumPtInCone(b,e1_eta,e1_phi,e2_eta,e2_phi,e2_pt):
             b.real(pt_sum_cone)
         b.end_list() # end list
 
-def makeBDTv1Inputs(events):
+def makeBDTv1Inputs(events): # Legacy BDT; not used anymore 
     '''
     variables = ['lead_jet_pt','lead_jet_eta','minJetMETdPhi','jetMETdPhi',
                  'sel_vtx_sign', 'sel_vtx_chi2','sel_vtx_METdPhi','sel_vtx_m','sel_vtx_dR','sel_vtx_minDxy']
@@ -475,7 +479,7 @@ def makeBDTv1Inputs(events):
     return input
 
 
-def makeBDTv2Inputs(events):
+def makeBDTv2Inputs(events): # Legacy BDT; not used anymore
     '''
     variables = ['sel_vtx_chi2','sel_vtx_METdPhi','sel_vtx_m','sel_vtx_dR','sel_vtx_minDxy','vxy_signif']
     '''
@@ -494,7 +498,7 @@ def makeBDTv2Inputs(events):
 
     return input
 
-def makeBDTinputs(events):
+def makeBDTinputs(events): # Current BDT for SR vtx cut
     '''
     # BDT_10vars_comb11 (ROC-AUC, PR-AUC) = (0.9958, 0.9959)
     variables = ['sel_vtx_chi2','sel_vtx_METdPhi','sel_vtx_m','sel_vtx_dR','sel_vtx_minDxy','vxy','vxy_signif',\
@@ -514,7 +518,7 @@ def makeBDTinputs(events):
     sel_vtx_minDxy_arr = mindxy.to_numpy()
     sel_vtx_vxy_arr = events.sel_vtx.vxy.to_numpy()
     vxy_signif_arr = (events.sel_vtx.vxy/events.sel_vtx.sigmavxy).to_numpy()
-    cos_collinear_arr = events.cos_collinear.to_numpy()
+    cos_collinear_arr = events.sel_vtx.cos_collinear.to_numpy()
     sel_vtx_prod_eta_arr = (events.sel_vtx.e1.eta * events.sel_vtx.e2.eta).to_numpy()
     met_leadPt_ratio_arr = (events.PFMET.pt/events.PFJet.pt[:,0]).to_numpy()
 
@@ -535,6 +539,13 @@ def getBDTscore(arr, model):
     score = trained_model.predict(arr)
 
     return score
+
+def prepareBDT(events, model):
+    if (len(events) != 0) and (model != None):
+        input = makeBDTinputs(events)
+        score_BDT = getBDTscore(input, model)
+        
+        events['BDTScore'] = score_BDT
 
 def getEventsSelVtxIsTruthMatched(events):
 # for signal MC, return the events where selected vertex (lowest chi2) passes the truth-matching (gen-matching)
